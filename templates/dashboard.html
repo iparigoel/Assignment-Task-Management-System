@@ -1,0 +1,8 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <h1>Dashboard Page : {{session[username]}} - {{session['usr_id']}}</h1>
+    <a href="{{ url_for('list_tasks') }}">Go to My Tasks |</a>
+    <a href="/logout">Logout |</a>
+    <a href="{{ url_for('analytics') }}">Analytics</a>
+{% endblock %}

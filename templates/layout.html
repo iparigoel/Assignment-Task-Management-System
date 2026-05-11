@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <nav> 
+        <a href="/">Home</a>|
+        {% if 'user_id' in session%}
+            <a href="/dashboard">Dashboard</a>|
+        {% else %}
+            <a href="/login">Login</a>|
+            <a href="/register">Register</a>
+        {% endif %}
+        <div>
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }}">
+                            {{ message }} ({{ category }})
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </div>
+    </nav>
+    {% block content %}
+    {% endblock %}
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+    <script>
+
+        const socket = io();
+    
+        socket.on('task_update', function(data) {
+    
+            alert(data.message);
+    
+            location.reload();
+    
+        });
+    
+    </script>
+</body>
+</html>

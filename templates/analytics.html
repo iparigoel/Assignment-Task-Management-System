@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<h2>Task Analytics</h2>
+
+<table border="1" cellpadding="10">
+    <tr>
+        <th>Total Tasks</th>
+        <td>{{ total_tasks }}</td>
+    </tr>
+
+    <tr>
+        <th>Completed Tasks</th>
+        <td>{{ completed_tasks }}</td>
+    </tr>
+
+    <tr>
+        <th>Pending Tasks</th>
+        <td>{{ pending_tasks }}</td>
+    </tr>
+
+    <tr>
+        <th>Completion Percentage</th>
+        <td>{{ completion_percentage }}%</td>
+    </tr>
+</table>
+
+{% endblock %}

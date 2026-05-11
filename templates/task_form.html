@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+
+{% block content %}
+  <h2>{{ 'Edit Task' if mode == 'edit' else 'Create Task' }}</h2>
+
+  <form method="POST">
+    {{ form.hidden_tag() }}
+
+    <p>
+      {{ form.title.label }}<br>
+      {{ form.title(size=40) }}
+      {% for error in form.title.errors %}
+        <small style="color:red;">{{ error }}</small>
+      {% endfor %}
+    </p>
+
+    <p>
+      {{ form.description.label }}<br>
+      {{ form.description(rows=4, cols=50) }}
+      {% for error in form.description.errors %}
+        <small style="color:red;">{{ error }}</small>
+      {% endfor %}
+    </p>
+
+    <p>
+      {{ form.priority.label }}<br>
+      {{ form.priority() }}
+      {% for error in form.priority.errors %}
+        <small style="color:red;">{{ error }}</small>
+      {% endfor %}
+    </p>
+
+    <p>
+      {{ form.status() }} {{ form.status.label }}
+      {% for error in form.status.errors %}
+        <small style="color:red;">{{ error }}</small>
+      {% endfor %}
+    </p>
+    <p>
+        {{form.date.label}}
+        <br>
+        {{ form.date() }}
+        {% if selected_date %}
+        <p>You selected: {{ selected_date.strftime("%d-%m-%Y") }}</p>
+        {% endif %}
+    </p>
+    <p>
+      {{ form.submit(value='Update Task' if mode == 'edit' else 'Create Task') }}
+      <a href="{{ url_for('list_tasks') }}">Cancel</a>
+    </p>
+  </form>
+{% endblock %}
