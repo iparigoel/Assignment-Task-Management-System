@@ -87,7 +87,11 @@ git clone https://github.com/iparigoel/Assignment-Task-Management-System.git
 
 cd Assignment-Task-Management-System
 ```
+Run schema:
 
+```bash
+psql -U postgres -d flask_auth_db -f schema.sql
+```
 
 ---
 
