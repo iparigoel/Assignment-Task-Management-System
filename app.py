@@ -5,12 +5,15 @@ from flask_bcrypt import Bcrypt
 import pandas as pd
 import numpy as np
 from flask_socketio import SocketIO, emit
+from dotenv import load_dotenv
+import os
 
+load_dotenv()
 socketio = SocketIO()
 def create_app():
     app = Flask(__name__)
-    app.config['SECRET_KEY'] = 'heguehkrjolebgcvklm;loih'
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:1234@localhost:5432/flask_auth_db'
+    app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
 
     socketio.init_app(app)
     bcrypt = Bcrypt(app)
